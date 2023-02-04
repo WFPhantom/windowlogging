@@ -1,6 +1,6 @@
 modLoader = "javafml"
 license = "MIT license"
-loaderVersion = "[41,)"
+loaderVersion = "[43,)"
 #issueTrackerURL=""
 
 [[mods]]
@@ -12,14 +12,14 @@ authors = "Simibubi, Grimmauld"
 description = '''
 Windowlogging, ported from Create 1.14.4'''
 
-[[dependencies.windowlogging]]
+[[dependencies.modid]]
 modId = "forge"
 mandatory = true
-versionRange = "[41,)"
+versionRange = "[43,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.windowlogging]]
+[[dependencies.modid]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.19,1.20)"

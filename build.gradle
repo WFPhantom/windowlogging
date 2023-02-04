@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.gmazzo.buildconfig' version '3.0.1'
+    id 'com.github.gmazzo.buildconfig' version '3.1.0'
     id "com.modrinth.minotaur" version "2.+"
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -19,6 +19,8 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply from: 'https://raw.githubusercontent.com/LordGrimmauld/gitinfo-collect/master/build.gradle'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/ForgeUpdatesRemapper/main/remapper.gradle'
+
 
 version = "mc${minecraft_version}_v${mod_version}"
 group = "mod.grimmauld.${modid}"
@@ -28,7 +30,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
-    // mappings channel: 'parchment', version: "2022.06.05-${minecraft_version}" // https://ldtteam.jfrog.io/ui/native/parchmentmc-public/org/parchmentmc/data/parchment-1.18.2/
+    // mappings channel: 'parchment', version: "2022.11.27-${minecraft_version}" // https://ldtteam.jfrog.io/ui/native/parchmentmc-public/org/parchmentmc/data/parchment-1.18.2/
     mappings channel: 'official', version: minecraft_version
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -76,14 +78,15 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // debug
-    //runtimeOnly fg.deobf("curse.maven:doubleslabs-350179:3061145")
-    // runtimeOnly fg.deobf("com.jozufozu.flywheel:Flywheel:1.16-0.2.3.44")
-    // runtimeOnly fg.deobf("com.simibubi.create:Create:mc1.16.5_v0.3.2f+464")
-    // runtimeOnly fg.deobf("curse.maven:quark-243121:3490981")
-    // runtimeOnly fg.deobf("curse.maven:oddities-301051:3088871")
-    // runtimeOnly fg.deobf("curse.maven:areg-250363:3326041")
-    // runtimeOnly fg.deobf("curse.maven:blockcarpentry-401658:3147183")
-    // runtimeOnly fg.deobf("curse.maven:paneintheglass-374529:3432890")
+    // runtimeOnly fg.deobf("curse.maven:doubleslabs-350179:3873442")
+    // runtimeOnly fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    // runtimeOnly fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+    // runtimeOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    // runtimeOnly fg.deobf("curse.maven:quark-243121:4366541")
+    // runtimeOnly fg.deobf("curse.maven:oddities-301051:3575623")
+    // runtimeOnly fg.deobf("curse.maven:areg-250363:4100299")
+    // runtimeOnly fg.deobf("curse.maven:blockcarpentry-401658:4094099")
+    // runtimeOnly fg.deobf("curse.maven:paneintheglass-374529:4111500")
 }
 
 compileJava.options.encoding = 'UTF-8'
