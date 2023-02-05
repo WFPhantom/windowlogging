@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = BuildConfig.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DeferredRegistries {
-	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, BuildConfig.MODID);
+	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, BuildConfig.MODID);
 	private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BuildConfig.MODID);
 	public static final RegistryObject<WindowInABlockBlock> WINDOW_IN_A_BLOCK = registerBlock("window_in_a_block", WindowInABlockBlock::new);
 

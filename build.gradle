@@ -19,7 +19,6 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply from: 'https://raw.githubusercontent.com/LordGrimmauld/gitinfo-collect/master/build.gradle'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/ForgeUpdatesRemapper/main/remapper.gradle'
 
 
 version = "mc${minecraft_version}_v${mod_version}"
