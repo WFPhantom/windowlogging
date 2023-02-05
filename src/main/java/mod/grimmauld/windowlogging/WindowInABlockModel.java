@@ -21,8 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.BakedModelWrapper;
-import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -68,10 +67,10 @@ public class WindowInABlockModel extends BakedModelWrapper<BakedModel> {
 
 	@Override
 	@Nonnull
-	public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, IModelData data) {
+	public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, ModelData data) {
 		List<BakedQuad> quads = new ArrayList<>();
 
-		WindowInABlockTileEntity windowInABlockTileEntity = data.getData(WINDOWLOGGED_TE);
+		WindowInABlockTileEntity windowInABlockTileEntity = data.get(WINDOWLOGGED_TE);
 		if (windowInABlockTileEntity == null)
 			return quads;
 		BlockState partialState = windowInABlockTileEntity.getPartialBlock();
@@ -86,10 +85,10 @@ public class WindowInABlockModel extends BakedModelWrapper<BakedModel> {
 		if (ItemBlockRenderTypes.canRenderInLayer(partialState, renderType) && partialState.getRenderShape() == RenderShape.MODEL) {
 			BakedModel partialModel = DISPATCHER.getBlockModel(partialState);
 			quads.addAll(partialModel.getQuads(partialState, side, rand, partialModel.getModelData(world, position, partialState,
-				partialTE == null ? EmptyModelData.INSTANCE : partialTE.getModelData())));
+				partialTE == null ? ModelData.EMPTY : partialTE.getModelData())));
 		}
 		if (ItemBlockRenderTypes.canRenderInLayer(windowState, renderType)) {
-			DISPATCHER.getBlockModel(windowState).getQuads(windowState, side, rand, DISPATCHER.getBlockModel(windowState).getModelData(world, position, windowState, EmptyModelData.INSTANCE))
+			DISPATCHER.getBlockModel(windowState).getQuads(windowState, side, rand, DISPATCHER.getBlockModel(windowState).getModelData(world, position, windowState, ModelData.EMPTY))
 				.forEach(bakedQuad -> {
 					if (!hasSolidSide(partialState, world, position, bakedQuad.getDirection())) {
 						fightZfighting(bakedQuad);
@@ -101,8 +100,8 @@ public class WindowInABlockModel extends BakedModelWrapper<BakedModel> {
 	}
 
 	@Override
-	public TextureAtlasSprite getParticleIcon(IModelData data) {
-		WindowInABlockTileEntity windowInABlockTileEntity = data.getData(WINDOWLOGGED_TE);
+	public TextureAtlasSprite getParticleIcon(ModelData data) {
+		WindowInABlockTileEntity windowInABlockTileEntity = data.get(WINDOWLOGGED_TE);
 		if (windowInABlockTileEntity == null)
 			return super.getParticleIcon(data);
 
