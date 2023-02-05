@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -53,7 +53,7 @@ public class DeferredRegistries {
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void registerColorProviders(ParticleFactoryRegisterEvent event) {
+	public static void registerColorProviders(RegisterParticleProvidersEvent event) {
 		WindowBlockColor.registerFor(DeferredRegistries.WINDOW_IN_A_BLOCK.get());
 	}
 

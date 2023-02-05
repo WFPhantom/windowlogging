@@ -33,8 +33,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.IBlockRenderProperties;
 import net.minecraftforge.client.RenderProperties;
+import net.minecraftforge.client.extensions.common.IClientBlockExtensions;
 import net.minecraftforge.common.ForgeMod;
 
 import javax.annotation.Nullable;
@@ -279,8 +279,8 @@ public class WindowInABlockBlock extends IronBarsBlock implements EntityBlock {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void initializeClient(Consumer<IBlockRenderProperties> consumer) {
-		consumer.accept(new IBlockRenderProperties() {
+	public void initializeClient(Consumer<IClientBlockExtensions> consumer) {
+		consumer.accept(new IClientBlockExtensions() {
 			private final ParticleEngine particleEngine = Minecraft.getInstance().particleEngine;
 
 			@Override
