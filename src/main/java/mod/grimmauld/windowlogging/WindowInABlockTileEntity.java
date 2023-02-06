@@ -21,7 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class WindowInABlockTileEntity extends BlockEntity {
 	public static final ModelProperty<WindowInABlockTileEntity> WINDOWLOGGED_TE = new ModelProperty<>();
-	private final ModelData modelData = ModelData.Builder().with(WINDOWLOGGED_TE, this).build();
+	private final ModelData modelData = ModelData.builder().with(WINDOWLOGGED_TE, this).build();
 	private BlockState partialBlock = Blocks.AIR.defaultBlockState();
 	private BlockState windowBlock = Blocks.AIR.defaultBlockState();
 	private CompoundTag partialBlockTileData = new CompoundTag();
