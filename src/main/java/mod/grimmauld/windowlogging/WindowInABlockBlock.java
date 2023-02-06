@@ -33,7 +33,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.RenderProperties;
 import net.minecraftforge.client.extensions.common.IClientBlockExtensions;
 import net.minecraftforge.common.ForgeMod;
 
@@ -290,9 +289,9 @@ public class WindowInABlockBlock extends IronBarsBlock implements EntityBlock {
 				BlockPos pos = ((BlockHitResult) target).getBlockPos();
 				WindowInABlockTileEntity te = getTileEntity(world, pos);
 				if (te != null) {
-					RenderProperties.get(te.getWindowBlock()).addHitEffects(state, world, target, particleEngine);
+					IClientBlockExtensions.of(te.getWindowBlock()).addHitEffects(state, world, target, particleEngine);
 					addBlockHitEffects(manager, pos, (BlockHitResult) target, te.getWindowBlock(), (ClientLevel) world);
-					return RenderProperties.get(te.getPartialBlock()).addHitEffects(te.getPartialBlock(), world, target, particleEngine);
+					return IClientBlockExtensions.of(te.getPartialBlock()).addHitEffects(te.getPartialBlock(), world, target, particleEngine);
 				}
 				return false;
 			}
@@ -301,9 +300,9 @@ public class WindowInABlockBlock extends IronBarsBlock implements EntityBlock {
 			public boolean addDestroyEffects(BlockState state, Level world, BlockPos pos, ParticleEngine manager) {
 				WindowInABlockTileEntity te = getTileEntity(world, pos);
 				if (te != null) {
-					RenderProperties.get(te.getWindowBlock()).addDestroyEffects(te.getWindowBlock(), world, pos, particleEngine);
+					IClientBlockExtensions.of(te.getWindowBlock()).addDestroyEffects(te.getWindowBlock(), world, pos, particleEngine);
 					manager.destroy(pos, te.getWindowBlock());
-					return RenderProperties.get(te.getPartialBlock()).addDestroyEffects(te.getPartialBlock(), world, pos, manager);
+					return IClientBlockExtensions.of(te.getPartialBlock()).addDestroyEffects(te.getPartialBlock(), world, pos, manager);
 				}
 				return false;
 			}

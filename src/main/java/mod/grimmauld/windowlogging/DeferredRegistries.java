@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -59,8 +60,8 @@ public class DeferredRegistries {
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onModelBake(ModelBakeEvent event) {
-		Map<ResourceLocation, BakedModel> modelRegistry = event.getModelRegistry();
+	public static void onModelBake(ModelEvent.BakingCompleted event) {
+		Map<ResourceLocation, BakedModel> modelRegistry = event.getModels();
 		DeferredRegistries.WINDOW_IN_A_BLOCK.get().getStateDefinition()
 				.getPossibleStates()
 				.stream()

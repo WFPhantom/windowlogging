@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.ModelData;
 
@@ -82,19 +81,20 @@ public class WindowInABlockModel extends BakedModelWrapper<BakedModel> {
 			return quads;
 
 		RenderType renderType = MinecraftForgeClient.getRenderType();
+		RenderType renderType1 = getRenderTypes();
 		if (ItemBlockRenderTypes.canRenderInLayer(partialState, renderType) && partialState.getRenderShape() == RenderShape.MODEL) {
 			BakedModel partialModel = DISPATCHER.getBlockModel(partialState);
 			quads.addAll(partialModel.getQuads(partialState, side, rand, partialModel.getModelData(world, position, partialState,
-				partialTE == null ? ModelData.EMPTY : partialTE.getModelData())));
+					partialTE == null ? ModelData.EMPTY : partialTE.getModelData())));
 		}
 		if (ItemBlockRenderTypes.canRenderInLayer(windowState, renderType)) {
 			DISPATCHER.getBlockModel(windowState).getQuads(windowState, side, rand, DISPATCHER.getBlockModel(windowState).getModelData(world, position, windowState, ModelData.EMPTY))
-				.forEach(bakedQuad -> {
-					if (!hasSolidSide(partialState, world, position, bakedQuad.getDirection())) {
-						fightZfighting(bakedQuad);
-						quads.add(bakedQuad);
-					}
-				});
+					.forEach(bakedQuad -> {
+						if (!hasSolidSide(partialState, world, position, bakedQuad.getDirection())) {
+							fightZfighting(bakedQuad);
+							quads.add(bakedQuad);
+						}
+					});
 		}
 		return quads;
 	}
@@ -107,10 +107,5 @@ public class WindowInABlockModel extends BakedModelWrapper<BakedModel> {
 
 		BlockEntity partialTE = windowInABlockTileEntity.getPartialBlockTileEntityIfPresent();
 		return DISPATCHER.getBlockModel(windowInABlockTileEntity.getPartialBlock()).getParticleIcon(partialTE == null ? data : partialTE.getModelData());
-	}
-
-	@Override
-	public boolean useAmbientOcclusion() {
-		return MinecraftForgeClient.getRenderType() == RenderType.solid();
 	}
 }
